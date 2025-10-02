@@ -60,6 +60,7 @@ spec:
                     docker push ${REPOSITORY_TAG}
                   '''
                 }
+                }
             }
       }
 
