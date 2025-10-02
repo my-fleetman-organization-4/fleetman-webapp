@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: webapp
+  namespace: jenkins
 spec:
   selector:
     matchLabels:
@@ -12,6 +13,7 @@ spec:
       labels:
         app: webapp
     spec:
+      serviceAccountName: jenkins-sa
       containers:
       - name: webapp
         env:
