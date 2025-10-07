@@ -18,7 +18,8 @@ RUN rm -rf /usr/share/nginx/html/*
 COPY /dist /usr/share/nginx/html
 
 #COPY nginx.conf /etc/nginx/nginx.conf
-COPY dist/k8s-fleetman-webapp-angular /usr/share/nginx/html
+COPY --from=build /app/dist/k8s-fleetman-webapp-angular /usr/share/nginx/html
+
 
 
 CMD ["nginx", "-g", "daemon off;"]
