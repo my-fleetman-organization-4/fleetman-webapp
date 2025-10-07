@@ -1,3 +1,12 @@
+# Etapa 1: build Angular
+FROM node:18-alpine AS build
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build 
+
+
 FROM nginx:1.14.0-alpine
 
 MAINTAINER Richard Chesterwood "richard@inceptiontraining.co.uk"

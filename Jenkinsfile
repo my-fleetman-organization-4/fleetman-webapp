@@ -47,6 +47,13 @@ spec:
       stage('Build') {
          steps {
             sh 'echo No build required for Webapp.'
+            // container('maven') {
+            //     sh '''
+            //       echo "Building Angular app..."
+            //       npm install
+            //       npm run build -- --configuration production
+            //     '''
+            // }
          }
       }
 
