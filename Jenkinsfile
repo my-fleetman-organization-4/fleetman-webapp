@@ -52,7 +52,8 @@ spec:
             //       echo "Building Angular app..."
             //       npm install
             //       npm run build -- --configuration production
-            //     '''
+            //     ''' docker image build -t ${REPOSITORY_TAG} .
+           
             // }
          }
       }
@@ -63,7 +64,7 @@ spec:
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                   sh '''
                     echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-                    docker image build -t ${REPOSITORY_TAG} .
+                    docker build --no-cache -t ${REPOSITORY_TAG} .
                     docker push ${REPOSITORY_TAG}
                   '''
                 }
@@ -74,7 +75,13 @@ spec:
       stage('Deploy to Cluster') {
           steps {
              container('maven') {
-                sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -'
+               // sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -'
+
+                sh '''
+                    # Forzar que el deployment use la nueva imagen
+                    kubectl set image deployment/webapp webapp=${REPOSITORY_TAG} -n jenkins
+                    kubectl rollout status deployment/webapp -n jenkins
+                '''
              }
           }
       }
