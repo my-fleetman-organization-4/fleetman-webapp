@@ -77,14 +77,9 @@ spec:
              container('maven') {
                // sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -'
 
-                sh '''
-                    # Forzar que el deployment use la nueva imagen
-                    kubectl set image deployment/webapp webapp=${REPOSITORY_TAG} -n jenkins
-                    kubectl rollout status deployment/webapp -n jenkins
-                '''
+              sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -'
              }
           }
       }
    }
 }
-
