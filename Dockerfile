@@ -6,7 +6,6 @@
 # COPY . .
 # RUN npm run build 
 
-
 FROM nginx:1.14.0-alpine
 
 MAINTAINER Richard Chesterwood "richard@inceptiontraining.co.uk"
@@ -17,9 +16,6 @@ RUN rm -rf /usr/share/nginx/html/*
 
 COPY /dist /usr/share/nginx/html
 
-#COPY nginx.conf /etc/nginx/nginx.conf
-COPY --from=build /app/dist/k8s-fleetman-webapp-angular /usr/share/nginx/html
-
-
+COPY nginx.conf /etc/nginx/nginx.conf
 
 CMD ["nginx", "-g", "daemon off;"]
