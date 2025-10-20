@@ -59,7 +59,7 @@ spec:
       stage('Deploy to Cluster') {
           steps {
              container('maven') {
-               // sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -'
+               
 
               sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -'
              }
