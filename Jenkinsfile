@@ -40,6 +40,17 @@ spec:
             git credentialsId: 'GitHub', url: "https://github.com/${ORGANIZATION_NAME}/${SERVICE_NAME}"
          }
       }
+  stage('Build Angular') {
+        steps {
+            container('maven') {
+                sh '''
+                  echo "Building Angular app..."
+                  npm ci
+                  npm run build --prod
+                '''
+            }
+        }
+    }
 
 
       stage('Build and Push Image') {
