@@ -14,7 +14,7 @@ COPY package*.json ./
 RUN npm install -g npm@6
 
 COPY package*.json ./
-RUN npm ci --silent
+RUN npm ci
 
 COPY . .
 RUN npm run build 
