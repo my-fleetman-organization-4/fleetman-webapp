@@ -59,7 +59,7 @@ spec:
       stage('Deploy to Cluster') {
           steps {
              container('maven') {
-               
+               echo "REPOSITORY_TAG usado en el deploy: ${REPOSITORY_TAG}"
 
               sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -'
              }
