@@ -9,7 +9,7 @@
 
 FROM node:12 AS build
 WORKDIR /app
-
+COPY package*.json ./
 # For Angular 6, Node 12 y npm 6 son compatibles
 RUN npm install -g npm@6
 
