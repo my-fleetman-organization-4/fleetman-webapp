@@ -8,21 +8,16 @@ pipeline {
 apiVersion: v1
 kind: Pod
 spec:
-spec:
   serviceAccountName: jenkins-sa
   containers:
   - name: maven
-    image:  israel452/maven-docker:2.0
+    image: israel452/maven-docker:2.0
     command:
     - cat
     tty: true
     volumeMounts:
     - name: docker-sock
       mountPath: /var/run/docker.sock
-  volumes:
-  - name: docker-sock
-    hostPath:
-      path: /var/run/docker.sock
   - name: node
     image: node:18
     command:
@@ -35,7 +30,6 @@ spec:
   - name: docker-sock
     hostPath:
       path: /var/run/docker.sock
-
  """
          }
      }
