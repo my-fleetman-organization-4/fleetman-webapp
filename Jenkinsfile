@@ -29,10 +29,6 @@ spec:
      }
 
    environment {
-     // You must set the following environment variables
-     // ORGANIZATION_NAME
-     // YOUR_DOCKERHUB_USERNAME (it doesn't matter if you don't have one)
-     
      SERVICE_NAME = "fleetman-webapp"
      REPOSITORY_TAG="${YOUR_DOCKERHUB_USERNAME}/${ORGANIZATION_NAME}-${SERVICE_NAME}:${BUILD_ID}"
    }
@@ -44,19 +40,7 @@ spec:
             git credentialsId: 'GitHub', url: "https://github.com/${ORGANIZATION_NAME}/${SERVICE_NAME}"
          }
       }
-      stage('Build') {
-         steps {
-            sh 'echo No build required for Webapp.'
-            // container('maven') {
-            //     sh '''
-            //       echo "Building Angular app..."
-            //       npm install
-            //       npm run build -- --configuration production
-            //     ''' docker image build -t ${REPOSITORY_TAG} .
-           
-            // }
-         }
-      }
+
 
       stage('Build and Push Image') {
          steps {
