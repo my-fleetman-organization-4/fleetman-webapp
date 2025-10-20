@@ -6,6 +6,19 @@
 # COPY . .
 # RUN npm run build 
 
+
+FROM node:12 AS build
+WORKDIR /app
+
+# For Angular 6, Node 12 y npm 6 son compatibles
+RUN npm install -g npm@6
+
+COPY package*.json ./
+RUN npm ci --silent
+
+COPY . .
+RUN npm run build 
+
 FROM nginx:1.14.0-alpine
 
 MAINTAINER Richard Chesterwood "richard@inceptiontraining.co.uk"
