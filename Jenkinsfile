@@ -48,7 +48,7 @@ spec:
       }
   stage('Build Angular') {
         steps {
-            container('maven') {
+            container('node') {
                 sh '''
                   echo "Building Angular app..."
                   npm ci
