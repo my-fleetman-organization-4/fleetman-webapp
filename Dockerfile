@@ -1,10 +1,10 @@
-# Etapa de build
-FROM node:18 AS build
-WORKDIR /app
-COPY package*.json ./
-RUN npm ci
-COPY . .
-RUN npm run build 
+# # Etapa de build
+# FROM node:18 AS build
+# WORKDIR /app
+# COPY package*.json ./
+# RUN npm ci
+# COPY . .
+# RUN npm run build 
 
 FROM nginx:1.14.0-alpine
 
