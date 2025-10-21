@@ -6,15 +6,15 @@
 # COPY . .
 # RUN npm run build 
 
-FROM node:12-alpine AS build
-WORKDIR /app
+# FROM node:12-alpine AS build
+# WORKDIR /app
 
 
-COPY package*.json ./
-RUN npm install -g npm@6 && npm install
+# COPY package*.json ./
+# RUN npm install -g npm@6 && npm install
 
-COPY . .
-RUN npm run build 
+# COPY . .
+# RUN npm run build 
 
 FROM nginx:1.14.0-alpine
 
