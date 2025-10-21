@@ -39,7 +39,7 @@ spec:
 
     stage('Build Angular App') {
       steps {
-        container('build') {
+        container('maven') {
           sh '''
             echo "📦 Instalando dependencias..."
             npm install
