@@ -7,7 +7,7 @@ kind: Pod
 spec:
   serviceAccountName: jenkins-sa
   containers:
-  - name: build
+  - name: maven
     image: israel452/maven-node:1.0
     command:
     - cat
