@@ -8,9 +8,7 @@
 
 FROM node:12-alpine AS build
 WORKDIR /app
-COPY package*.json ./
-# For Angular 6, Node 12 y npm 6 son compatibles
-RUN npm install -g npm@6
+
 
 COPY package*.json ./
 RUN npm install -g npm@6 && npm install
