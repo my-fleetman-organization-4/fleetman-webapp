@@ -1,25 +1,14 @@
 pipeline {
      agent {
-             kubernetes {
-
-        
-                 
-             yaml """
+             kubernetes {                    
+     yaml """
 apiVersion: v1
 kind: Pod
 spec:
   serviceAccountName: jenkins-sa
   containers:
-  - name: maven
-    image: israel452/maven-docker:2.0
-    command:
-    - cat
-    tty: true
-    volumeMounts:
-    - name: docker-sock
-      mountPath: /var/run/docker.sock
-  - name: node
-    image: node:18
+  - name: build
+    image: israel452/maven-node:1.0
     command:
     - cat
     tty: true
@@ -30,7 +19,8 @@ spec:
   - name: docker-sock
     hostPath:
       path: /var/run/docker.sock
- """
+      type: Socket
+"""
          }
      }
 
@@ -47,7 +37,18 @@ spec:
          }
       }
 
-
+    stage('Build Angular App') {
+      steps {
+        container('build') {
+          sh '''
+            echo "📦 Instalando dependencias..."
+            npm install
+            echo "🏗️ Construyendo Angular app..."
+            npm run build
+          '''
+        }
+      }
+    }
 
       stage('Build and Push Image') {
          steps {
