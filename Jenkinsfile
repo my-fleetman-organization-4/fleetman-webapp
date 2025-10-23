@@ -40,12 +40,12 @@ spec:
     stage('Build Angular App') {
       steps {
         container('maven') {
-          sh '''
-            echo "📦 Instalando dependencias..."
-            npm install
-            echo "🏗️ Construyendo Angular app..."
-            npm run build
-          '''
+          // sh '''
+          //   // echo "📦 Instalando dependencias..."
+          //   // npm install
+          //   // echo "🏗️ Construyendo Angular app..."
+          //   // npm run build
+          // '''
         }
       }
     }
